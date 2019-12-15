@@ -1,0 +1,42 @@
+- name: Update server
+  apt:
+   upgrade: yes
+   update_cache: yes
+
+- name: mysql-server
+  apt:
+    name: mysql-server
+    
+- name: python-mysqldb
+  apt:
+    name: python-mysqldb
+    
+- name: python-pip
+  apt:
+    name: python-pip
+    
+- name: python-setuptools
+  apt:
+    name: python-setuptools
+    
+- name: setuptools
+  pip:
+    name: setuptools
+    
+- name: pymysql
+  pip:
+    name: pymysql
+
+- name: Create wordpress
+  mysql_db:
+    login_unix_socket=/var/run/mysqld/mysqld.sock
+    name=wordpress
+
+- name: Create admindb
+  mysql_user:
+    login_unix_socket=/var/run/mysqld/mysqld.sock
+    name=admindb
+    password=passdb
+    priv=*.*:ALL
+
+    

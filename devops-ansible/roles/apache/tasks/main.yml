@@ -1,0 +1,31 @@
+- name: Update server
+  apt:
+   upgrade: yes
+   update_cache: yes
+
+- name: Install Apache2
+  apt:
+    name: apache2
+
+- name: Allow Apache2
+  ufw:
+    rule: allow
+    name: Apache
+
+- name: Php
+  apt:
+    name: php
+    
+- name: libapache2-mod-php
+  apt:
+    name: libapache2-mod-php
+    
+- name: php-mysql
+  apt:
+    name: php-mysql
+    
+- name: restart apache
+  service:
+    name: Apache
+  notify:
+  - restart apache2

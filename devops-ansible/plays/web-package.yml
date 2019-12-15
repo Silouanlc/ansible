@@ -1,0 +1,7 @@
+- name: apache/php/ftp
+  hosts: web
+  remote_user: devops
+  become: true
+
+  roles:
+    - apache
